@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace = "base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Signup Page</title>
+</head>
+<body>
+	<section>
+		<div class="container mt-3">
+		
+			<div class="row">
+			
+				<div class="col-md-6 offset-md-3">
+				
+					<div class="my-card mt-3">
+					
+					
+					<div th:if ="${session.message}" th:classappend = "${session.message.type}" class="alert"  role="alert">
+  							<p class = "text-center" th:text = "${session.message.content}"></p>
+  							
+  							<th:block th:text = "${#session.removeAttribute('message')}"></th:block>
+						</div>
+					
+					
+						<div class = "container text-center">
+						
+							<img style = "width:60px;" alt="" src="" th:src = "@{/img/register.png}">
+						
+						</div>
+					
+						<h1 class = "text-center">Register Here !!!</h1>
+						
+						<form novalidate action="" th:action = "@{/do_register}" method = "post" th:object = "${user}">
+						
+							<!-- Start Name Field -->
+							
+							 <div class="form-group">
+    							<label for="name_field">Full Name</label>
+    							<input 
+    								name = "name"
+    								type="text" 
+    								class="form-control" 
+    								th:value = "${user.name}"
+    								th:classappend = "${#fields.hasErrors('name')? 'is-invalid':''}"
+    								id="name_field" 
+    								aria-describedby="emailHelp"
+    								placeholder = "Enter Full Name"
+    								required
+    								/>
+    								
+    								<div class="invalid-feedback" th:each = "e : ${#fields.errors('name')}" th:text = "${e}"></div>		
+    								
+    								
+  							  </div>
+							
+							<!-- End Name Field -->
+							
+							
+							<!-- Start Email Field -->
+							
+							 <div class="form-group">
+    							<label for="email_field">Email Address</label>
+    							<input 
+    								name = "email"
+    								type="email" 
+    								class="form-control" 
+    								id="email_field" 
+    								aria-describedby="emailHelp"
+    								placeholder = "Enter Email Address"
+    								required
+    								th:value = "${user.email}"
+    								th:classappend = "${#fields.hasErrors('email')? 'is-invalid':''}"
+    								/>
+    								
+    						<div class="invalid-feedback" th:each = "e : ${#fields.errors('email')}" th:text = "${e}"></div>	
+  							  </div>
+							
+							<!-- End Email Field -->
+							
+							<!-- Start Password Field -->
+							
+							 <div class="form-group">
+    							<label for="password_field">Password</label>
+    							<input 
+    								name = "password"
+    								type="password" 
+    								class="form-control" 
+    								id="password_field" 
+    								aria-describedby="emailHelp"
+    								placeholder = "Enter Password"
+    								th:value = "${user.password}"
+    								th:classappend = "${#fields.hasErrors('password')? 'is-invalid':''}"
+    								required/>
+    								
+    					<div class="invalid-feedback" th:each = "e : ${#fields.errors('password')}" th:text = "${e}"></div>
+  							  </div>
+							
+							<!-- End Password Field -->
+							
+							<!-- Start about Field -->
+							
+							 <div class="form-group">
+							 
+							 	<textarea name = "about" th:text = "${user.about}" placeholder="Describe about yourself" rows="6"class = "form-control" ></textarea>
+    			
+  							  </div>
+							
+							<!-- End about Field -->
+							
+							<!-- Start terms and condition agreeement Field -->
+							
+								<div class="form-group form-check text-center">
+								
+									<input 
+										   name = "agreement"
+										   type = "checkbox"
+										   class = "form-check-input"
+										   id = "agreement"
+										   />
+										   
+									<label for = "agreement">Accept terms and conditions</label>
+							
+								</div>
+							
+							
+							<!-- End terms and condition agreeement Field -->
+							
+							
+							
+							<!-- Start Button Field -->
+							
+							<div class="container text-center">
+							
+								<button type = "submit"class = "btn bg-primary text-white btn-block">Submit</button>
+								<button type = "reset" class = "btn bg-warning text-white btn-block">Reset</button>
+								
+							</div>
+							
+							<!-- End Button Field -->
+						
+						</form>
+					
+					</div>
+				
+				</div>
+			
+			</div>
+		
+		</div>
+	</section>
+	
+</body>
+</html>

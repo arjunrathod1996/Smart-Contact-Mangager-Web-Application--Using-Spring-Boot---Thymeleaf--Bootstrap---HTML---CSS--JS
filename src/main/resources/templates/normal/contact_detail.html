@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace = "normal/base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>About Page</title>
+</head>
+<body>
+	<section>
+		<div class="card mr-3 ml-3">
+		
+			<div class="card-body" th:if=${contact} >
+			
+				<div class="container text-center">
+				
+					<img src = "" style = "height: 150px; width: 150px;" class = "my_profile_picture" th:src = "@{'/img/'+${contact.image}}" alt="profile photo"/>
+					
+					<h3 class = "mt-3" th:text = "${contact.name}" style="font-family: cursive;"></h3>
+					
+					<table class="table">
+						  <thead>
+						    <tr>
+						      <th scope="col">#ID</th>
+						      <th scope="col">14ETCE0010<span th:text = "${contact.Cid}"></span></th>
+						   
+					
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr>
+						      <th scope="row">Email</th>
+						      <td><Span th:text = "${contact.email}"></Span></td>
+						    
+						    </tr>
+						    
+						    <tr>
+						      <th scope="row">Phone</th>
+						      <td><Span th:text = "${contact.phone}"></Span></td>
+						    
+						    </tr>
+						    
+						     <tr>
+						      <th scope="row">Work</th>
+						      <td><Span th:text = "${contact.work}"></Span></td>
+						    
+						    </tr>
+						    
+						    
+						    
+						  </tbody>
+						  
+						  
+						</table>
+						
+						<div class="description mt-3">
+						    
+						    	<th:block th:utext = "${contact.description}"></th:block>
+						    
+						    </div>
+						    
+						   <div class="container">
+						   
+						   		<button th:onclick="|deleteContact(${contact.Cid})|" class="btn btn-danger btn-small btn-block">Delete</button>
+								
+								
+								<form method = "POST" th:action="@{'/user/update-contact/' + ${contact.Cid}}" class = "mt-2">
+								
+									<button type = "submit" class="btn btn-primary btn-small btn-block">Update</button>
+								
+								</form>
+						   
+						   </div>
+				</div>
+			
+			</div>
+			
+			
+		
+		</div>
+		
+		<h1 class = "text-center" th:unless = "${contact}" style="font-family: cursive;">You Dont't have permission to see this contact....</h1>
+	</section>
+	
+</body>
+</html>
